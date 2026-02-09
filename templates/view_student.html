@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="student-detail-container">
+    <div class="detail-header">
+        <div class="student-profile">
+            <div class="avatar">
+                <i class="fas fa-user-graduate"></i>
+            </div>
+            <div class="student-info">
+                <h2>{{ student.name }}</h2>
+                <p class="student-meta">
+                    <span><i class="fas fa-hashtag"></i> ID: {{ student.id }}</span>
+                    <span><i class="fas fa-id-card"></i> Roll No: {{ student.roll_no }}</span>
+                    <span><i class="fas fa-book"></i> {{ student.course }}</span>
+                </p>
+            </div>
+        </div>
+        
+        <div class="header-actions">
+            <a href="{{ url_for('edit_student', student_id=student.id) }}" class="btn-edit">
+                <i class="fas fa-edit"></i> Edit
+            </a>
+            <a href="{{ url_for('delete_student', student_id=student.id) }}" 
+               class="btn-delete"
+               onclick="return confirm('Delete student {{ student.name }}?')">
+                <i class="fas fa-trash"></i> Delete
+            </a>
+            <a href="{{ url_for('view_students') }}" class="btn-back">
+                <i class="fas fa-arrow-left"></i> Back to List
+            </a>
+        </div>
+    </div>
+    
+    <div class="detail-content">
+        <!-- Personal Information Card -->
+        <div class="detail-card">
+            <h3><i class="fas fa-user"></i> Personal Information</h3>
+            <div class="detail-grid">
+                <div class="detail-item">
+                    <label>Email</label>
+                    <p>{{ student.email }}</p>
+                </div>
+                <div class="detail-item">
+                    <label>Phone</label>
+                    <p>{{ student.phone }}</p>
+                </div>
+                <div class="detail-item full-width">
+                    <label>Address</label>
+                    <p>{{ student.address or 'Not specified' }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Academic Information Card -->
+        <div class="detail-card">
+            <h3><i class="fas fa-graduation-cap"></i> Academic Information</h3>
+            <div class="detail-grid">
+                <div class="detail-item">
+                    <label>Course</label>
+                    <p>{{ student.course }}</p>
+                </div>
+                <div class="detail-item">
+                    <label>Year</label>
+                    <p>{{ student.year }}</p>
+                </div>
+                <div class="detail-item">
+                    <label>Grade</label>
+                    <p>
+                        <span class="grade-badge grade-{{ student.grade|lower|replace('+', '') }}">
+                            {{ student.grade }}
+                        </span>
+                    </p>
+                </div>
+                <div class="detail-item">
+                    <label>Attendance</label>
+                    <div class="attendance-display">
+                        <div class="attendance-bar">
+                            
+                            <div class="attendance-fill" id="detail-attendance-fill"></div>
+                        </div>
+                        <span>{{ student.attendance }}%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Fees Information Card -->
+        <div class="detail-card">
+            <h3><i class="fas fa-money-bill-wave"></i> Fees Information</h3>
+            <div class="fees-status">
+                {% if student.fees_paid %}
+                <div class="status-success">
+                    <i class="fas fa-check-circle"></i>
+                    <div>
+                        <h4>Fees Status: Paid</h4>
+                        <p>All fees have been cleared</p>
+                    </div>
+                </div>
+                {% else %}
+                <div class="status-pending">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <h4>Fees Status: Pending</h4>
+                        <p>Fees payment is due</p>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--JAVASCRIPT -->
+<script>
+// Simple fix - just set the width on page load
+window.onload = function() {
+    // Get the attendance value from the page
+    var attendanceSpan = document.querySelector('.attendance-display span');
+    var fillElement = document.getElementById('detail-attendance-fill');
+    
+    if (attendanceSpan && fillElement) {
+        // Extract the number (e.g., "85%" -> "85")
+        var text = attendanceSpan.textContent;
+        var number = text.replace('%', '');
+        
+        // Set the width
+        fillElement.style.width = number + '%';
+        fillElement.style.backgroundColor = '#4CAF50';
+        fillElement.style.height = '8px';
+        fillElement.style.display = 'block';
+    }
+};
+</script>
+{% endblock %}

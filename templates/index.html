@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero">
+    <h2>Welcome to Student Management System</h2>
+    <p>Manage student records efficiently using Flask and JSON database</p>
+    
+    <div class="stats">
+        <div class="stat-card">
+            <i class="fas fa-users"></i>
+            <h3>Total Students</h3>
+            <p id="total-students">Loading...</p>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-book"></i>
+            <h3>Courses</h3>
+            <p id="total-courses">Loading...</p>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-check-circle"></i>
+            <h3>Active</h3>
+            <p id="active-students">Loading...</p>
+        </div>
+    </div>
+</div>
+
+<div class="features">
+    <h2>Features</h2>
+    <div class="feature-grid">
+        <div class="feature">
+            <i class="fas fa-user-plus"></i>
+            <h3>Add Students</h3>
+            <p>Add new student records with complete details</p>
+            <a href="{{ url_for('add_student') }}" class="btn-small">Try Now</a>
+        </div>
+        <div class="feature">
+            <i class="fas fa-search"></i>
+            <h3>Search & View</h3>
+            <p>Search and view student information</p>
+            <a href="{{ url_for('view_students') }}" class="btn-small">View All</a>
+        </div>
+        <div class="feature">
+            <i class="fas fa-edit"></i>
+            <h3>Edit Records</h3>
+            <p>Update student information easily</p>
+            <a href="{{ url_for('view_students') }}" class="btn-small">Edit Now</a>
+        </div>
+        <div class="feature">
+            <i class="fas fa-chart-bar"></i>
+            <h3>Track Progress</h3>
+            <p>Monitor attendance and grades</p>
+            <a href="{{ url_for('view_students') }}" class="btn-small">View Stats</a>
+        </div>
+    </div>
+</div>
+
+<script>
+// Fetch and display stats
+fetch('/api/stats')
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('total-students').textContent = data.total_students;
+        document.getElementById('total-courses').textContent = data.total_courses;
+        document.getElementById('active-students').textContent = data.active_students;
+    });
+</script>
+{% endblock %}

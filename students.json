@@ -1,0 +1,53 @@
+{
+    "students": [
+        {
+            "id": 2,
+            "roll_no": "5",
+            "name": "prem",
+            "email": "prem12@gmail.com",
+            "phone": "7248080489",
+            "course": "Computer Science",
+            "year": "3rd Year",
+            "grade": "A",
+            "attendance": 75,
+            "attendance_percent": "75%",
+            "fees_paid": true,
+            "address": "Delhi",
+            "created_at": "2026-01-29 17:08:24",
+            "updated_at": "2026-01-29 17:27:04"
+        },
+        {
+            "id": 3,
+            "roll_no": "2",
+            "name": "sim",
+            "email": "sim23@gmail.com",
+            "phone": "7248081234",
+            "course": "Mechanical",
+            "year": "Final Year",
+            "grade": "B",
+            "attendance": 75,
+            "attendance_percent": "75%",
+            "fees_paid": true,
+            "address": "Noida",
+            "created_at": "2026-01-29 17:09:24",
+            "updated_at": "2026-01-29 17:09:24"
+        },
+        {
+            "id": 4,
+            "roll_no": "3",
+            "name": "sakshi",
+            "email": "shi234@gmail.com",
+            "phone": "9723458970",
+            "course": "Mechanical",
+            "year": "4th Year",
+            "grade": "D",
+            "attendance": 75,
+            "attendance_percent": "75%",
+            "fees_paid": true,
+            "address": "Noida",
+            "created_at": "2026-01-29 17:26:42",
+            "updated_at": "2026-01-29 17:26:42"
+        }
+    ],
+    "next_id": 5
+}
