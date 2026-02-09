@@ -54,11 +54,11 @@ student-management-system/
 
 ### Step 1 : Clone the repository
 
-git clone https://github.com/Premlata-code/STUDENT_MANAGEMENT SYSTEM.git
+git clone https://github.com/Premlata-code/STUDENT_MANAGEMENT_SYSTEM.git
 
 ### Step 2 : Open project folder
 
-cd STUDENT_MANAGEMENT SYSTEM
+cd STUDENT_MANAGEMENT_SYSTEM
 
 ### Step 3 : Create virtual environment 
 
